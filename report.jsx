@@ -6,7 +6,7 @@ var createReactClass = require('create-react-class')
 var rows = require('./data.json')
 
 var dimensions = [
-  {title: 'Host', value: 'hostname'},
+  {title: 'Host', value: 'host'},
   {
     title: 'Date Type',
     value: function(row) { return row.date },
