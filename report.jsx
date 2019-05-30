@@ -18,10 +18,13 @@ var reduce = function(row, memo) {
   memo.load = (memo.load || 0) + (row.type === 'load' ? 1 : 0);
   memo.display = (memo.display || 0) + (row.type === 'display' ? 1 : 0);
 
-  if(memo.count > rows.length - 2) {
-    memo.loadRate = (memo.loadRate || 0) + memo.load/memo.impression
-    memo.displayRate = (memo.displayRate || 0) + memo.display/memo.load
-  }
+  // if(memo.count > rows.length - 2) {
+  //   memo.loadRate = (memo.loadRate || 0) + memo.load/memo.impression
+  //   memo.displayRate = (memo.displayRate || 0) + memo.display/memo.load
+  // }
+
+  memo.loadRate = memo.load/memo.impression;
+  memo.displayRate = memo.display/memo.load;
   return memo
 }
 
