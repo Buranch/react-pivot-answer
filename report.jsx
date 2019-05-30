@@ -17,14 +17,6 @@ var reduce = function(row, memo) {
   memo.impression = (memo.impression || 0) + (row.type === 'impression' ? 1 : 0);
   memo.load = (memo.load || 0) + (row.type === 'load' ? 1 : 0);
   memo.display = (memo.display || 0) + (row.type === 'display' ? 1 : 0);
-
-  // if(memo.count > rows.length - 2) {
-  //   memo.loadRate = (memo.loadRate || 0) + memo.load/memo.impression
-  //   memo.displayRate = (memo.displayRate || 0) + memo.display/memo.load
-  // }
-
-  memo.loadRate = memo.load/memo.impression;
-  memo.displayRate = memo.display/memo.load;
   return memo
 }
 
@@ -41,14 +33,15 @@ var calculations = [
   },
   {
     title: 'Load Rate',
-    value: 'loadRate',
-    template: function(val, row) { return val && `${(val/100).toFixed(2)}%` }
+    value: 'load',
+    template: function(val, row) { return `${((row.load/ row.impression)*100).toFixed(2)}%` }
+
 
   },
   {
     title: 'Display Rate',
     value: 'displayRate',
-    template: function(val, row) { return val && `${(val/100).toFixed(2)}%` }
+    template: function(val, row) { return `${((row.display/ row.load)*100).toFixed(2)}%` }
 
   }
 ]
