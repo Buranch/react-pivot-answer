@@ -19,6 +19,8 @@ var reduce = function(row, memo) {
     (memo.impression || 0) + (row.type === "impression" ? 1 : 0);
   memo.load = (memo.load || 0) + (row.type === "load" ? 1 : 0);
   memo.display = (memo.display || 0) + (row.type === "display" ? 1 : 0);
+  memo.loadRate = (memo.load / memo.impression) * 100
+  memo.displayRate = (memo.display / memo.load) * 100
   return memo;
 };
 
@@ -36,19 +38,17 @@ var calculations = [
     value: "load"
   },
   {
-    title: "Load Rate",
-    value: "load",
+    title: 'Load Rate',
+    value: 'loadRate',
     template: function(val, row) {
-      // loadRate = load/impression
-      return `${((val / row.impression) * 100).toFixed(2)}%`;
+      return `${((val)).toFixed(2)}%`
     }
   },
   {
-    title: "Display Rate",
-    value: "display",
+    title: 'Display Rate',
+    value: 'displayRate',
     template: function(val, row) {
-      // displayRate = display/load
-      return `${((val / row.load) * 100).toFixed(2)}%`;
+      return `${((val)).toFixed(2)}%`
     }
   }
 ];
