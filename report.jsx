@@ -41,14 +41,14 @@ var calculations = [
     title: 'Load Rate',
     value: 'loadRate',
     template: function(val, row) {
-      return `${((val)).toFixed(2)}%`
+      return `${(val).toFixed(2)}%`
     }
   },
   {
     title: 'Display Rate',
     value: 'displayRate',
     template: function(val, row) {
-      return `${((val)).toFixed(2)}%`
+      return `${(val).toFixed(2)}%`
     }
   }
 ];
